@@ -11,7 +11,7 @@ function shuffle(array) {
 
 function Modal({ correct, incorrect, time, onRestart }) {
   return (
-    <div className="fixed inset-0 bg-black/85  bg-opacity-60 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/85 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-xl p-6 max-w-sm w-full text-center shadow-lg">
         <h2 className="text-2xl font-bold mb-4 text-green-600">🎉 Tabrigingiz bilan!</h2>
         <p className="mb-2 text-lg">O'yin tugadi.</p>
@@ -29,6 +29,10 @@ function Modal({ correct, incorrect, time, onRestart }) {
   );
 }
 
+function isMobileDevice() {
+  return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+}
+
 const allWords = Object.entries(wordsData).flatMap(([type, list]) =>
   list.map((word) => ({ word, type }))
 );
@@ -41,9 +45,12 @@ function Game() {
   const [elapsed, setElapsed] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
   const [isStarted, setIsStarted] = useState(false);
-  const [selectedCount, setSelectedCount] = useState(10); // default 10 ta so'z
+  const [selectedCount, setSelectedCount] = useState(10);
+  const [selectedWord, setSelectedWord] = useState(null);
+  const [selectedBasket, setSelectedBasket] = useState(null);
 
-  // Vaqtni hisoblash
+  const mobile = isMobileDevice();
+
   useEffect(() => {
     if (isGameOver || !isStarted) return;
 
@@ -54,18 +61,13 @@ function Game() {
     return () => clearInterval(interval);
   }, [startTime, isGameOver, isStarted]);
 
-  // O'yin tugash sharti: words bo'sh bo'lsa
   useEffect(() => {
     if (words.length === 0 && !isGameOver && isStarted) {
       setIsGameOver(true);
     }
   }, [words, isGameOver, isStarted]);
 
-  // O'yinni boshlash
   const startGame = () => {
-    // 1. So‘zlarni har bir toifadan aralash qilib tanlaymiz
-    // So‘zlar umumiy soni selectedCount bo‘lishi kerak
-    // Har bir toifadan taxminan teng ta so‘z olamiz
     const types = Object.keys(wordsData);
     const perTypeCount = Math.floor(selectedCount / types.length);
     let chosenWords = [];
@@ -77,7 +79,6 @@ function Game() {
       );
     });
 
-    // Agar selectedCount butun bo‘linmasa, qolgan so‘zlar random qilib qo‘shilsin
     const diff = selectedCount - chosenWords.length;
     if (diff > 0) {
       const remainingPool = shuffle(allWords).filter(
@@ -93,14 +94,18 @@ function Game() {
     setStartTime(Date.now());
     setIsGameOver(false);
     setIsStarted(true);
+    setSelectedWord(null);
+    setSelectedBasket(null);
   };
 
   const handleDragStart = (e, wordObj) => {
+    if (mobile) return;
     e.dataTransfer.setData('word', wordObj.word);
     e.dataTransfer.setData('type', wordObj.type);
   };
 
   const handleDrop = (basketLabel, e) => {
+    if (mobile) return;
     e.preventDefault();
 
     if (isGameOver || !isStarted) return;
@@ -108,9 +113,7 @@ function Game() {
     const wordText = e.dataTransfer.getData('word');
     const wordType = e.dataTransfer.getData('type');
 
-    if (baskets[basketLabel.toLowerCase()].includes(wordText)) {
-      return;
-    }
+    if (baskets[basketLabel.toLowerCase()].includes(wordText)) return;
 
     const isCorrect = wordType === basketLabel.toLowerCase();
 
@@ -128,6 +131,31 @@ function Game() {
     }
   };
 
+  // Mobile: savatni tanlash va keyin savatga qo'shish
+  const handleAddToBasketMobile = () => {
+    if (!selectedWord || !selectedBasket) return;
+
+    if (baskets[selectedBasket].includes(selectedWord.word)) return;
+
+    const isCorrect = selectedWord.type === selectedBasket;
+
+    if (isCorrect) {
+      playCorrectSound();
+      setScore((prev) => ({ ...prev, correct: prev.correct + 1 }));
+      setBaskets((prev) => ({
+        ...prev,
+        [selectedBasket]: [...prev[selectedBasket], selectedWord.word],
+      }));
+      setWords((prev) => prev.filter((w) => w.word !== selectedWord.word));
+    } else {
+      playWrongSound();
+      setScore((prev) => ({ ...prev, incorrect: prev.incorrect + 1 }));
+    }
+
+    setSelectedWord(null);
+    setSelectedBasket(null);
+  };
+
   const handleRestart = () => {
     setIsStarted(false);
     setWords([]);
@@ -135,10 +163,12 @@ function Game() {
     setScore({ correct: 0, incorrect: 0 });
     setElapsed(0);
     setIsGameOver(false);
+    setSelectedWord(null);
+    setSelectedBasket(null);
   };
 
   return (
-    <div className="min-h-screen bg-blue-50/85 bg-opacity-80 p-4 md:p-8 relative flex flex-col">
+    <div className="min-h-screen bg-blue-50/85 p-4 md:p-8 relative flex flex-col">
       <h1 className="text-3xl text-center font-bold mb-4 md:mb-8">
         🍉 So‘zlarni to‘g‘ri savatlarga ajrating
       </h1>
@@ -171,28 +201,76 @@ function Game() {
           <Scoreboard correct={score.correct} incorrect={score.incorrect} time={elapsed} />
 
           <div className="flex flex-col md:flex-row gap-4 mt-4 flex-grow">
-            <Basket label="Kim?" onDrop={(e) => handleDrop('kim', e)}>
-              {baskets.kim.map((w) => (
-                <WordItem key={w} word={w} isInBasket />
-              ))}
-            </Basket>
-            <Basket label="Nima?" onDrop={(e) => handleDrop('nima', e)}>
-              {baskets.nima.map((w) => (
-                <WordItem key={w} word={w} isInBasket />
-              ))}
-            </Basket>
-            <Basket label="Qayer?" onDrop={(e) => handleDrop('qayer', e)}>
-              {baskets.qayer.map((w) => (
-                <WordItem key={w} word={w} isInBasket />
-              ))}
-            </Basket>
+            {['kim', 'nima', 'qayer'].map((label) => (
+              <div
+                key={label}
+                onClick={() => mobile && selectedWord && setSelectedBasket(label)}
+                className={`cursor-pointer border-4 border-dashed rounded-2xl p-4 flex-1 flex flex-col items-center shadow-xl select-none
+                  ${
+                    selectedBasket === label
+                      ? 'border-green-500 bg-green-100'
+                      : 'border-gray-600 bg-white/90'
+                  }
+                `}
+              >
+                <h2 className="text-xl md:text-2xl font-bold mb-3 text-gray-800">
+                  🧺 {label.charAt(0).toUpperCase() + label.slice(1)}?
+                </h2>
+                <div className="flex flex-wrap justify-center min-h-[150px] w-full">
+                  {baskets[label].map((w) => (
+                    <WordItem key={w} word={w} isInBasket />
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
 
           <div className="flex flex-wrap justify-center mt-6">
             {words.map((w) => (
-              <WordItem key={w.word} word={w.word} onDragStart={(e) => handleDragStart(e, w)} />
+              <div
+                key={w.word}
+                onClick={() => mobile && setSelectedWord(w)}
+                className={`cursor-pointer ${
+                  selectedWord?.word === w.word ? 'ring-4 ring-green-400 rounded-lg' : ''
+                }`}
+              >
+                <WordItem
+                  word={w.word}
+                  onDragStart={(e) => handleDragStart(e, w)}
+                  isInBasket={false}
+                />
+              </div>
             ))}
           </div>
+
+          {/* Mobil uchun pastdagi boshqaruv paneli */}
+          {mobile && selectedWord && (
+            <div className="fixed bottom-4 left-1/2 -translate-x-1/2 bg-white rounded-xl shadow-lg p-4 flex flex-col items-center gap-3 max-w-sm w-full z-50">
+              <div className="mb-2 font-semibold">Tanlangan meva: {selectedWord.word}</div>
+              <div className="flex gap-4">
+                <button
+                  onClick={handleAddToBasketMobile}
+                  disabled={!selectedBasket}
+                  className={`px-4 py-2 rounded text-white transition ${
+                    selectedBasket
+                      ? 'bg-green-600 hover:bg-green-700'
+                      : 'bg-gray-400 cursor-not-allowed'
+                  }`}
+                >
+                  {selectedBasket ? `Savatga qo'shish (${selectedBasket})` : 'Savatni tanlang'}
+                </button>
+                <button
+                  onClick={() => {
+                    setSelectedWord(null);
+                    setSelectedBasket(null);
+                  }}
+                  className="px-4 py-2 bg-red-500 rounded text-white hover:bg-red-600 transition"
+                >
+                  Bekor qilish
+                </button>
+              </div>
+            </div>
+          )}
         </>
       )}
 
