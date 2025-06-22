@@ -34,6 +34,10 @@ const allWords = Object.entries(wordsData).flatMap(([type, list]) =>
   list.map((word) => ({ word, type }))
 );
 
+function isMobileDevice() {
+  return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+}
+
 function Game() {
   const [words, setWords] = useState([]);
   const [baskets, setBaskets] = useState({ kim: [], nima: [], qayer: [] });
@@ -42,6 +46,9 @@ function Game() {
   const [elapsed, setElapsed] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
   const [isStarted, setIsStarted] = useState(false);
+  const [selectedWord, setSelectedWord] = useState(null);
+  const [selectedBasket, setSelectedBasket] = useState(null);
+  const mobile = isMobileDevice();
 
   useEffect(() => {
     if (!isStarted || isGameOver) return;
@@ -67,6 +74,8 @@ function Game() {
     setStartTime(Date.now());
     setIsGameOver(false);
     setIsStarted(true);
+    setSelectedWord(null);
+    setSelectedBasket(null);
   };
 
   const handleDragStart = (e, wordObj) => {
@@ -83,15 +92,29 @@ function Game() {
     if (isCorrect) {
       playCorrectSound();
       setScore(prev => ({ ...prev, correct: prev.correct + 1 }));
-      setBaskets(prev => ({
-        ...prev,
-        [basketLabel]: [...prev[basketLabel], wordText],
-      }));
+      setBaskets(prev => ({ ...prev, [basketLabel]: [...prev[basketLabel], wordText] }));
       setWords(prev => prev.filter(w => w.word !== wordText));
     } else {
       playWrongSound();
       setScore(prev => ({ ...prev, incorrect: prev.incorrect + 1 }));
     }
+  };
+
+  const handleAddToBasketMobile = () => {
+    if (!selectedWord || !selectedBasket) return;
+    if (baskets[selectedBasket].includes(selectedWord.word)) return;
+    const isCorrect = selectedWord.type === selectedBasket;
+    if (isCorrect) {
+      playCorrectSound();
+      setScore(prev => ({ ...prev, correct: prev.correct + 1 }));
+      setBaskets(prev => ({ ...prev, [selectedBasket]: [...prev[selectedBasket], selectedWord.word] }));
+      setWords(prev => prev.filter(w => w.word !== selectedWord.word));
+    } else {
+      playWrongSound();
+      setScore(prev => ({ ...prev, incorrect: prev.incorrect + 1 }));
+    }
+    setSelectedWord(null);
+    setSelectedBasket(null);
   };
 
   const handleRestart = () => {
@@ -101,6 +124,8 @@ function Game() {
     setScore({ correct: 0, incorrect: 0 });
     setElapsed(0);
     setIsGameOver(false);
+    setSelectedWord(null);
+    setSelectedBasket(null);
   };
 
   return (
@@ -124,24 +149,68 @@ function Game() {
 
           <div className="flex flex-col md:flex-row gap-4 mt-6">
             {['kim', 'nima', 'qayer'].map(label => (
-              <Basket key={label} label={label} onDrop={e => handleDrop(label, e)}>
-                {baskets[label].map(word => (
-                  <WordItem key={word} word={word} isInBasket={true} />
-                ))}
-              </Basket>
+              <div
+                key={label}
+                onClick={() => mobile && selectedWord && setSelectedBasket(label)}
+                onDragOver={(e) => e.preventDefault()}
+                onDrop={(e) => handleDrop(label, e)}
+                className={`cursor-pointer border-4 border-dashed rounded-2xl p-4 flex-1 flex flex-col items-center shadow-xl select-none
+                  ${selectedBasket === label ? 'border-green-500 bg-green-100' : 'border-gray-600 bg-white/90'}`}
+              >
+                <h2 className="text-xl md:text-2xl font-bold mb-3 text-gray-800">
+                  🧺 {label.charAt(0).toUpperCase() + label.slice(1)}?
+                </h2>
+                <div className="flex flex-wrap justify-center min-h-[150px] w-full">
+                  {baskets[label].map((w) => (
+                    <WordItem key={w} word={w} isInBasket />
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
 
           <div className="flex flex-wrap justify-center mt-6">
-            {words.map(w => (
-              <WordItem
+            {words.map((w) => (
+              <div
                 key={w.word}
-                word={w.word}
-                isInBasket={false}
+                onClick={() => mobile && setSelectedWord(w)}
+                draggable={!mobile}
                 onDragStart={(e) => handleDragStart(e, w)}
-              />
+                className={`cursor-pointer ${selectedWord?.word === w.word ? 'ring-4 ring-green-400 rounded-lg' : ''}`}
+              >
+                <WordItem
+                  word={w.word}
+                  isInBasket={false}
+                />
+              </div>
             ))}
           </div>
+
+          {mobile && selectedWord && (
+            <div className="fixed bottom-4 left-1/2 -translate-x-1/2 bg-white rounded-xl shadow-lg p-4 flex flex-col items-center gap-3 max-w-sm w-full z-50">
+              <div className="mb-2 font-semibold">Tanlangan meva: {selectedWord.word}</div>
+              <div className="flex gap-4">
+                <button
+                  onClick={handleAddToBasketMobile}
+                  disabled={!selectedBasket}
+                  className={`px-4 py-2 rounded text-white transition ${
+                    selectedBasket ? 'bg-green-600 hover:bg-green-700' : 'bg-gray-400 cursor-not-allowed'
+                  }`}
+                >
+                  {selectedBasket ? `Savatga qo'shish (${selectedBasket})` : 'Savatni tanlang'}
+                </button>
+                <button
+                  onClick={() => {
+                    setSelectedWord(null);
+                    setSelectedBasket(null);
+                  }}
+                  className="px-4 py-2 bg-red-500 rounded text-white hover:bg-red-600 transition"
+                >
+                  Bekor qilish
+                </button>
+              </div>
+            </div>
+          )}
         </>
       )}
 
