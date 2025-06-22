@@ -1,0 +1,48 @@
+{
+  "kim": [
+    "o‘qituvchi", "bola", "doktor", "shifokor", "muhandis", "talaba", "dasturchi", "shoir", "maktabchi", "musician",
+    "muallim", "hamshira", "politsiyachi", "haydovchi", "choyxona egasi", "ofitser", "ishchi", "sartarosh", "yig‘uvchi", "marketolog",
+    "dizayner", "boshliq", "yurist", "arxitektor", "fotograf", "yozuvchi", "ishbilarmon", "doktorant", "sportchi", "ofitsiant",
+    "aktor", "aktrisa", "xodim", "me'mor", "bankir", "muharrir", "spravkachi", "pedagog", "tilshunos", "ofis ishchisi",
+    "otliq", "qishloq xo‘jalikchi", "fermer", "kapitan", "muzikant", "psixolog", "arzon sotuvchi", "marketing bo‘yicha mutaxassis", "asoschi", "agent",
+    "shifokor yordamchisi", "kuchishlilar", "konsultant", "mutaxassis", "boshlang‘ich maktab o‘qituvchisi", "koordinator", "maslahatchi", "analitik", "tarbiyachi", "muzey xodimi",
+    "quruvchi", "ofis boshlig‘i", "direktor", "xodim", "sotuvchi", "maxsus xodim", "maktab direktori", "talaba", "bolalar bog‘chasi tarbiyachisi", "asoschi",
+    "yurist yordamchisi", "bozor sotuvchisi", "gazeta muharriri", "avtomexanik", "o‘rta maktab o‘qituvchisi", "tadbirkor", "shaxsiy haydovchi", "dizayner", "professor", "mutaxassis",
+    "qishloq rahbari", "maktab direktori", "texnolog", "tadbirkor", "hamshiralar boshlig‘i", "qurolli kuchlar xodimi", "texnik", "politsiya inspektori", "radiomexanik", "boshlang‘ich maktab o‘qituvchisi",
+    "aeroport xodimi", "forsajchi", "sinf rahbari", "sport murabbiyi", "transport boshqaruvchisi", "veterinar", "parranda yetishtiruvchi", "sahna aktyori", "zavod ishchisi", "suvchilar boshlig‘i",
+    "diplomat", "repetitor", "kadrlar bo‘limi boshlig‘i", "zamonaviy san’at rassomi", "maktab psixologi", "sanoat mutaxassisi", "bog‘bon", "tadbirkor", "tibbiyot xodimi", "marketing mutaxassisi",
+    "injener-mexanik", "tarixchi", "operator", "kompaniya direktori", "konsul", "kutubxonachi", "maktab ma’muri", "kuch xodimi", "suv ta’minoti xodimi", "sanoat dizayneri",
+    "g‘isht ishlab chiqaruvchi", "bozor inspektori", "maktab mutaxassisi", "to‘quvchi", "uy quruvchi", "suv inshootlari muhandisi", "bozor boshlig‘i", "matbaa xodimi", "ayol ishchi", "maktab o‘qituvchisi",
+    "g‘aznachi", "kuch muhofazachisi", "yig‘uvchi", "gastronome", "yurist", "fitnes murabbiyi", "ma’naviy yetakchi", "elektrik", "maktab tarbiyachisi", "bog‘bon",
+    "sinf murabbiyi", "kompyuter mutaxassisi", "tikuvchilik ustasi", "texnolog", "bozor sotuvchisi", "yo‘l ishchisi", "suv idorasi xodimi", "maktab direktori", "kengash a’zosi", "fitnes instruktori",
+    "psixolog", "politsiya xodimi", "kompaniya boshqaruvchisi", "kadrlar bo‘limi mutaxassisi", "suv ombori boshlig‘i", "sport murabbiyi", "turizm bo‘yicha mutaxassis", "dizayner", "kadrlar bo‘limi boshlig‘i", "maktab o‘qituvchisi",
+    "bolalar bog‘chasi tarbiyachisi", "dasturchi", "maktab ma’muri", "muzey xodimi", "kompaniya rahbari", "politsiya inspektori", "texnik", "tarbiyachi", "bog‘bon", "fotograf",
+    "tikuvchi", "dasturchi", "sinf rahbari", "boshlang‘ich maktab o‘qituvchisi", "muhandis", "yurist", "marketing bo‘yicha mutaxassis", "aeroport xodimi", "xodim", "yig‘uvchi",
+    "avtomexanik", "bozor sotuvchisi", "tadbirkor", "sahna aktyori", "suvchilar boshlig‘i", "mutaxassis", "muharrir", "ofis boshlig‘i", "dizayner", "yurist yordamchisi",
+    "makon rahbari", "sanoat mutaxassisi", "maktab direktori", "talaba", "sportchi", "qishloq xo‘jalikchi", "kuch xodimi", "psixolog", "tadbirkor", "ofitsiant"
+  ],
+  "nima": [
+    "kitob", "olma", "qalam", "stol", "kompyuter", "mashina", "telefon", "soat", "sumka", "daryo",
+    "stul", "devor", "deraza", "chiroq", "lampa", "dona", "oyna", "sumka", "xalat", "bolta",
+    "kalit", "daftar", "sigaret", "konfet", "sham", "pechka", "gul", "kalorifer", "shapka", "kalta",
+    "tosh", "mikrofon", "kamera", "oyoq kiyim", "sharf", "jumboq", "kitob javoni", "telefon quti", "telefon apparati", "sovutgich",
+    "kabinet", "kompyuter monitori", "ofis stoli", "rashk", "sumka teli", "muzlatgich", "sovutish uskunasi", "uyali telefon", "xolodilnik", "xona",
+    "yostiq", "oyoq kiyimi", "kiyim", "shamollatkich", "kalendar", "olcha", "kalendar", "fayzli soat", "telefon qopqog‘i", "kitob muqovasi",
+    "soat taqvimi", "shlyapa", "ustun", "to‘shak", "oyna oynasi", "yotoq", "jumboq", "xolodilnik", "kompyuter", "oshxona dasturxoni",
+    "soyabon", "xalta", "sumka", "ayiqcha", "ko‘zoynak", "kalit", "lampa", "sham", "o‘rinlik", "stul",
+    "kitob polkasi", "gazeta", "qalam", "telefon", "kompyuter sichqoni", "sham", "dasturxon", "tosh", "qutichka", "soat",
+    "xona eshigi", "sham", "osmon", "sham", "qog‘oz", "xalta", "kitob muqovasi", "soat taqvimi", "gul", "telefon",
+    "kompyuter ekran", "sumka", "stol", "xalta", "penal", "qalam", "telefon", "soat", "gul", "daryo",
+    "ko‘zoynak", "sumka", "qalam", "kompyuter", "stol", "kitob", "telefon", "daryo", "sumka", "oyna"
+  ],
+  "qayer": [
+    "maktab", "bog‘", "oshxona", "kutubxona", "park", "o‘rmon", "uy", "bozor", "shahar", "qishloq",
+    "mehmonxona", "stantsiya", "bog‘cha", "teatr", "kinozal", "muzey", "stadion", "bank", "mehmonxona", "savdo markazi",
+    "shifoxona", "tuman", "viloyat", "daryo", "ko‘l", "ko‘cha", "maydon", "baza", "bo‘ka", "kafe",
+    "choyxona", "universitet", "makon", "tuman markazi", "xususiy uy", "kafe-restoran", "poliklinika", "metro", "avtobus bekati", "g‘ishtli uy",
+    "sayohat joyi", "dacha", "ferma", "baza", "maydoncha", "teatr zalı", "bozor rastasi", "bog‘cha maydoni", "kasalxona", "ishxona",
+    "bank bo‘limi", "aeroport", "stadion tribunasi", "masjid", "choyxona ichki", "maydon markazi", "keng ko‘cha", "shaharning markazi", "o‘rmon yo‘li", "tungi klub",
+    "kafe ichki", "uy ichki", "shahar tashqarisi", "qishloq ko‘chasi", "bog‘ yonida", "maktab hovlisi", "qo‘riqxona", "bozor yoni", "transport vositasi", "bog‘ maydoni",
+    "o‘yin maydoni", "park yo‘li", "shahar markazi", "samolyot parvoz maydoni", "mehmonxona hovlisi", "sport zali", "ish joyi", "uy ostonasi", "ko‘cha markazi", "tashrif buyurilgan joy"
+  ]
+}

@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+body {
+  background-image: url('https://img.freepik.com/free-vector/food-market-stalls-with-fruits-vegetables-cheese-meat-fish-counter-crates_107791-4733.jpg'); /* Bozor fon rasmi */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
