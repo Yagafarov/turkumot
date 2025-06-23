@@ -4,26 +4,22 @@
   "politsiyachi", "haydovchi", "ishchi", "sartarosh", "marketolog", "dizayner",
   "yurist", "arxitektor", "fotograf", "yozuvchi", "doktorant", "sportchi", "ofitsiant",
   "aktor", "aktrisa", "pedagog", "tilshunos", "fermer",  "psixolog", "maslahatchi",
-   "tarbiyachi", "muzey xodimi", "quruvchi", "direktor", "professor", "operator",
-  "kutubxonachi",  "san’atshunos", "bog‘bon", "tarixchi",
-  "kompyuter mutaxassisi", "sinf rahbari", "maktab o‘qituvchisi",
-  "bolalar bog‘chasi tarbiyachisi",  "maktab psixologi", "injener", 
-  "sahna aktyori",  "xodim", "tibbiyot xodimi"
+   "tarbiyachi", "quruvchi", "direktor", "professor", "operator"
 ]
 ,
   "nima": [
   "kitob", "qalam", "stol", "kompyuter", "telefon", "soat", "sumka", "olma", "daftar",
-  "gul", "mikrofon", "kamera", "oyna",  "deraza", "chiroq", "xona", "yostiq",
-  "kalit", "gazeta", "kompyuter monitori", "kitob javoni", "kitob muqovasi", "kompyuter sichqoni",
-  "quticha",  "ko‘zoynak", "dasturxon", "shamollatkich",   "oshxona dasturxoni",
-    "shlyapa", "soat taqvimi", "oyoq kiyimi"
+  "gul", "kamera", "oyna",  "deraza", "chiroq", "xona", 
+  "kalit", "gazeta",  "javon",
+  "quti",  "ko‘zoynak", "dasturxon", "shamollatkich",   "dasturxon",
+    "soat", "kiyimi"
 ]
 ,
   "qayer": [
-  "maktab", "bog‘", "oshxona", "kutubxona", "park", "o‘rmon", "uy", "bozor", "shahar", "qishloq",
-  "mehmonxona", "stantsiya", "bog‘cha", "teatr", "kinozal", "muzey", "stadion", "bank",
-  "shifoxona", "universitet", "metro", "avtobus bekati", "ferma", "ishxona", "sport zali",
-   "aeroport", "maydon", "ko‘cha", "viloyat", "tuman", "qishloq ko‘chasi", "park yo‘li",
-  "maktab hovlisi", "o‘yin maydoni", "daryo", "samolyot parvoz maydoni", "shahar markazi"
+  "maktab", "bog‘", "oshxona", "kutubxona",  "o‘rmon", "uy", "bozor", "shahar", "qishloq",
+  "mehmonxona", "stantsiya", "bog‘cha",  "kinozal", "muzey", "stadion",
+  "shifoxona", "universitet", "metro", "bekat",  "ishxona", 
+   "aeroport", "maydon", "ko‘cha", "viloyat", "tuman"
+  
 ]
  }
