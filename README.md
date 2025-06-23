@@ -1,12 +1,101 @@
-# React + Vite
+# 🍎 Mevalarni To‘g‘ri Savatlarga Ajrating
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bu loyiha o‘quvchilarga **so‘z turkumlarini (Kim? Nima? Qayer?)** o‘rganishda yordam beruvchi o‘yin tarzidagi veb-ilovadir. Foydalanuvchilar har bir so‘zni to‘g‘ri savatga ajratish orqali bilimlarini mustahkamlashadi.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🎮 O‘yin Qoidalari
 
-## Expanding the ESLint configuration
+- Har bir so‘z **Kim?**, **Nima?** yoki **Qayer?** savatiga tegishli.
+- Foydalanuvchi to‘g‘ri savatga tashlasa, ✅ **to‘g‘ri javob** bo‘ladi.
+- Noto‘g‘ri joylashtirilgan so‘z uchun ❌ **xato javob** hisoblanadi.
+- O‘yin yakunida statistik natijalar ko‘rsatiladi:
+  - To‘g‘ri javoblar soni
+  - Noto‘g‘ri javoblar soni
+  - O‘yin davomiyligi (sekundlarda)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 📦 Texnologiyalar
+
+- [React.js](https://reactjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Framer Motion](https://www.framer.com/motion/) — animatsiyalar uchun
+- HTML5 Drag & Drop API
+- Custom Sound effektlar (to‘g‘ri va noto‘g‘ri javoblar uchun)
+
+---
+
+## 🚀 Ishga Tushirish
+
+1. **Loyihani klonlang:**
+
+   ```bash
+   git clone https://github.com/Yagafarov/turkumot.git
+   cd turkumot
+   ```
+
+2. **Bog‘liqliklarni o‘rnating:**
+
+   ```bash
+   npm install
+   ```
+
+3. **Ilovani ishga tushiring:**
+
+   ```bash
+   npm run dev
+   ```
+
+4. Brauzerdan oching:  
+   [http://localhost:5173](http://localhost:5173)
+
+---
+
+## 📁 Loyihaning Tuzilishi
+
+```bash
+.
+├── public/
+├── src/
+│   ├── assets/              # Mevalar yoki fon rasmlari
+│   ├── components/          # WordItem, Basket, Scoreboard va h.k.
+│   ├── data/words.json      # So‘zlar ro‘yxati
+│   ├── pages/Game.jsx       # Asosiy o‘yin sahifasi
+│   ├── utils/sound.js       # To‘g‘ri/xato ovozlar
+│   └── main.jsx
+├── README.md
+└── package.json
+```
+
+---
+
+## 📱 Moslashuvchan Dizayn
+
+- **Mobil telefonlarda**: so‘zni tanlab, savatni bosish orqali joylashtirish mumkin
+- **Kompyuterda**: Drag & Drop ishlaydi
+- Animatsiyalar orqali foydalanuvchiga yoqimli interfeys yaratilgan
+
+---
+
+## ⚙️ Sozlamalar
+
+O‘yinni boshlashdan oldin foydalanuvchi **mevalar sonini (default: 9)** tanlashi mumkin.
+
+---
+
+## ✨ Ekran Ko‘rinishi
+
+![Game Screenshot](./screenshot.jpg)
+
+---
+
+## 📚 Foydali Bilimlar
+
+Ushbu o‘yin orqali bolalar quyidagilarni o‘rganadi:
+
+- So‘z turkumlari farqlari (Ot, joy, predmet)
+- Diqqatni jamlash
+- Mustaqil ravishda analiz qilish
+
+---
