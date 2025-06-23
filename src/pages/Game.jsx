@@ -13,7 +13,7 @@ function shuffle(array) {
 function Modal({ correct, incorrect, time, onRestart }) {
   return (
     <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl p-6 max-w-sm w-full text-center shadow-lg">
+      <div className="bg-white/85 rounded-xl p-6 max-w-sm w-full text-center shadow-lg">
         <h2 className="text-2xl font-bold mb-4 text-green-600">🎉 Tabrigingiz bilan!</h2>
         <p className="mb-2 text-lg">O'yin tugadi.</p>
         <p className="mb-1">✅ To‘g‘ri javoblar: {correct}</p>
@@ -129,13 +129,13 @@ function Game() {
   };
 
   return (
-    <div className="min-h-screen bg-blue-100/85 p-4 md:p-8">
+    <div className="min-h-screen bg-blue-100/50 p-4 md:p-8">
       <h1 className="text-3xl font-bold text-center mb-6">
         🍎 Mevalarni to‘g‘ri savatlarga ajrating
       </h1>
 
       {!isStarted ? (
-        <div className="max-w-sm mx-auto bg-white p-6 rounded-xl shadow-lg text-center">
+        <div className="max-w-sm mx-auto bg-white/85 p-6 rounded-xl shadow-lg text-center">
           <button
             onClick={startGame}
             className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition"
@@ -155,7 +155,7 @@ function Game() {
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={(e) => handleDrop(label, e)}
                 className={`cursor-pointer border-4 border-dashed rounded-2xl p-4 flex-1 flex flex-col items-center shadow-xl select-none
-                  ${selectedBasket === label ? 'border-green-500 bg-green-100' : 'border-gray-600 bg-white/90'}`}
+                  ${selectedBasket === label ? 'border-green-500 bg-green-100' : 'border-gray-600 bg-white/50'}`}
               >
                 <h2 className="text-xl md:text-2xl font-bold mb-3 text-gray-800">
                   🧺 {label.charAt(0).toUpperCase() + label.slice(1)}?
@@ -187,7 +187,7 @@ function Game() {
           </div>
 
           {mobile && selectedWord && (
-            <div className="fixed bottom-4 left-1/2 -translate-x-1/2 bg-white rounded-xl shadow-lg p-4 flex flex-col items-center gap-3 max-w-sm w-full z-50">
+            <div className="fixed bottom-4 left-1/2 -translate-x-1/2 bg-white/50 rounded-xl shadow-lg p-4 flex flex-col items-center gap-3 max-w-sm w-full z-50">
               <div className="mb-2 font-semibold">Tanlangan meva: {selectedWord.word}</div>
               <div className="flex gap-4">
                 <button

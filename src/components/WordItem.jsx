@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import orange from '../assets/orange.png';
 
 function WordItem({ word, onDragStart, isInBasket = false }) {
   return (
@@ -8,15 +9,18 @@ function WordItem({ word, onDragStart, isInBasket = false }) {
       transition={{ duration: 0.3 }}
     >
       <div
-        className={`px-3 md:px-5 py-1 md:py-2 m-2 rounded-full shadow-md font-semibold text-white text-sm md:text-lg select-none ${
-          isInBasket
-            ? 'bg-gradient-to-r from-emerald-400 to-lime-400 cursor-default'
-            : 'bg-gradient-to-r from-pink-500 to-red-400 cursor-grab'
+        className={`w-24 h-24 md:w-28 md:h-28 m-2 rounded-xl font-bold text-white text-center flex items-center justify-center text-sm md:text-lg select-none ${
+          isInBasket ? 'cursor-default' : 'cursor-grab'
         }`}
+        style={{
+          backgroundImage: `url(${orange})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
         draggable={!isInBasket}
         onDragStart={(e) => !isInBasket && onDragStart(e, word)}
       >
-        🍎 {word}
+      {word}
       </div>
     </motion.div>
   );
