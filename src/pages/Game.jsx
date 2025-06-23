@@ -1,4 +1,3 @@
-// Game.jsx
 import { useEffect, useState } from 'react';
 import Basket from '../components/Basket';
 import WordItem from '../components/WordItem';
@@ -30,15 +29,12 @@ function Modal({ correct, incorrect, time, onRestart }) {
   );
 }
 
-const allWords = Object.entries(wordsData).flatMap(([type, list]) =>
-  list.map((word) => ({ word, type }))
-);
-
 function isMobileDevice() {
   return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
 }
 
 function Game() {
+  const [wordCount, setWordCount] = useState(9);
   const [words, setWords] = useState([]);
   const [baskets, setBaskets] = useState({ kim: [], nima: [], qayer: [] });
   const [score, setScore] = useState({ correct: 0, incorrect: 0 });
@@ -64,10 +60,13 @@ function Game() {
 
   const startGame = () => {
     const types = Object.keys(wordsData);
-    const chosenWords = types.flatMap(type =>
-      shuffle(wordsData[type]).slice(0, 3).map(word => ({ word, type }))
-    );
-    setWords(shuffle(chosenWords));
+    const perType = Math.ceil(wordCount / types.length);
+
+    const chosen = types.flatMap(type =>
+      shuffle(wordsData[type]).slice(0, perType).map(word => ({ word, type }))
+    ).slice(0, wordCount);
+
+    setWords(shuffle(chosen));
     setBaskets({ kim: [], nima: [], qayer: [] });
     setScore({ correct: 0, incorrect: 0 });
     setElapsed(0);
@@ -135,7 +134,19 @@ function Game() {
       </h1>
 
       {!isStarted ? (
-        <div className="max-w-sm mx-auto bg-white/85 p-6 rounded-xl shadow-lg text-center">
+        <div className="max-w-sm mx-auto bg-white/85 p-6 rounded-xl shadow-lg text-center space-y-4">
+          <div>
+            <label htmlFor="wordCount" className="block mb-2 font-semibold">🥝 Mevalar sonini kiriting:</label>
+            <input
+              id="wordCount"
+              type="number"
+              min={3}
+              max={30}
+              value={wordCount}
+              onChange={(e) => setWordCount(Number(e.target.value))}
+              className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
           <button
             onClick={startGame}
             className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition"
@@ -178,10 +189,7 @@ function Game() {
                 onDragStart={(e) => handleDragStart(e, w)}
                 className={`cursor-pointer ${selectedWord?.word === w.word ? 'ring-4 ring-green-400 rounded-lg' : ''}`}
               >
-                <WordItem
-                  word={w.word}
-                  isInBasket={false}
-                />
+                <WordItem word={w.word} isInBasket={false} />
               </div>
             ))}
           </div>
