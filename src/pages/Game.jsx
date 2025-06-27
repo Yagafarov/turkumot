@@ -13,7 +13,7 @@ function Modal({ correct, incorrect, time, onRestart }) {
   return (
     <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
       <div className="bg-white/85 rounded-xl p-6 max-w-sm w-full text-center shadow-lg">
-        <h2 className="text-2xl font-bold mb-4 text-green-600">🎉 Tabrigingiz bilan!</h2>
+        <h2 className="text-2xl font-bold mb-4 text-green-600">🎉 Ishtirokingiz uchun rahmat!</h2>
         <p className="mb-2 text-lg">O'yin tugadi.</p>
         <p className="mb-1">✅ To‘g‘ri javoblar: {correct}</p>
         <p className="mb-1">❌ Noto‘g‘ri javoblar: {incorrect}</p>
